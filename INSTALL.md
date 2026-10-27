@@ -56,7 +56,7 @@ Oh My Zsh, Powerlevel10k and the tmux plugin manager:
 [ -d "$HOME/.oh-my-zsh" ] || RUNZSH=no KEEP_ZSHRC=yes sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 P10K="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k"
 [ -d "$P10K" ] || git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "$P10K"
-[ -d "$HOME/.tmux/plugins/tpm" ] || git clone https://github.com/tmux-plugins/tpm "$HOME/.tmux/plugins/tpm"
+[ -d "$HOME/.config/tmux/plugins/tpm" ] || git clone https://github.com/tmux-plugins/tpm "$HOME/.config/tmux/plugins/tpm"
 ```
 
 ## 3. Link the dotfiles
@@ -182,7 +182,7 @@ browser-use --help >/dev/null && echo "browser-use ok"
 
 ```bash
 nvim --headless "+Lazy! sync" +qa
-"$HOME/.tmux/plugins/tpm/bin/install_plugins"
+"$HOME/.config/tmux/plugins/tpm/bin/install_plugins"
 ```
 
 ## 9. Optional extras
