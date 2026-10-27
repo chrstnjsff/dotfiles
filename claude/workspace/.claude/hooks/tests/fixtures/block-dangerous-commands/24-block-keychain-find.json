@@ -1,0 +1,9 @@
+{
+  "name": "macOS keychain extraction is blocked",
+  "stdin": {
+    "tool_input": {
+      "command": "security find-generic-password -w -s example"
+    }
+  },
+  "expect_exit": 2
+}

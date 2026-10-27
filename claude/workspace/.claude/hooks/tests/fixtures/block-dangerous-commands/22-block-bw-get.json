@@ -1,0 +1,9 @@
+{
+  "name": "Bitwarden CLI is blocked",
+  "stdin": {
+    "tool_input": {
+      "command": "bw get password gitlab"
+    }
+  },
+  "expect_exit": 2
+}

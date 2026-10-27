@@ -1,0 +1,7 @@
+[user]
+	name = Christian Josef Aquino
+	email = chrstnjsff@gmail.com
+
+# Work identity, URL rewrites and anything company-specific go in ~/.gitconfig.local.
+[include]
+	path = ~/.gitconfig.local

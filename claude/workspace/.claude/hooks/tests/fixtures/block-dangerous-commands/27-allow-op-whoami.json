@@ -1,0 +1,9 @@
+{
+  "name": "op whoami is allowed (reads no secret)",
+  "stdin": {
+    "tool_input": {
+      "command": "op whoami"
+    }
+  },
+  "expect_exit": 0
+}

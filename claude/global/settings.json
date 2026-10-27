@@ -1,0 +1,154 @@
+{
+  "env": {
+    "ANONYMIZED_TELEMETRY": "false",
+    "BH_TAB_MARKER": "0",
+    "BH_TELEMETRY": "0",
+    "BH_UPDATE_CHECK": "0",
+    "BU_CDP_URL": "http://127.0.0.1:9333",
+    "BU_NAME": "e2e-test",
+    "CLAUDE_MEM_WELCOME_HINT_ENABLED": "false",
+    "DEEPAPI_API_BASE_URL": "https://deepapi.co"
+  },
+  "permissions": {
+    "allow": [
+      "Bash(obsidian search *)",
+      "Bash(obsidian search:context *)",
+      "Bash(obsidian read *)",
+      "Bash(obsidian backlinks *)",
+      "Bash(obsidian links *)",
+      "Bash(obsidian tags *)",
+      "Bash(obsidian tasks *)",
+      "Bash(obsidian unresolved *)",
+      "Bash(obsidian files *)"
+    ]
+  },
+  "model": "opus",
+  "hooks": {
+    "Notification": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "afplay /System/Library/Sounds/Glass.aiff"
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"$HOME/.claude/hooks/herdr-agent-state.sh\" session",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$HOME/.claude/hooks/humanizer-reply.sh\"",
+            "timeout": 5
+          }
+        ]
+      }
+    ]
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "bash ~/.claude/statusline-command.sh"
+  },
+  "enabledPlugins": {
+    "brag@brag": true,
+    "diagram-design@diagram-design": true,
+    "drawio@drawio": true,
+    "humanizer@humanizer": true,
+    "superpowers@claude-plugins-official": true,
+    "swift-lsp@claude-plugins-official": true,
+    "typesafe@typesafe-ai": true,
+    "watch@claude-video": true
+  },
+  "extraKnownMarketplaces": {
+    "brag": {
+      "source": {
+        "source": "github",
+        "repo": "latent-spaces/brag"
+      }
+    },
+    "claude-video": {
+      "source": {
+        "source": "github",
+        "repo": "bradautomates/claude-video"
+      }
+    },
+    "diagram-design": {
+      "source": {
+        "source": "github",
+        "repo": "cathrynlavery/diagram-design"
+      }
+    },
+    "drawio": {
+      "source": {
+        "source": "github",
+        "repo": "jgraph/drawio-mcp"
+      }
+    },
+    "humanizer": {
+      "source": {
+        "source": "github",
+        "repo": "blader/humanizer"
+      }
+    },
+    "typesafe-ai": {
+      "source": {
+        "source": "github",
+        "repo": "typesafe-ai/skills"
+      }
+    }
+  },
+  "effortLevel": "xhigh",
+  "modelSettings": {
+    "claude-fable-5-1": {
+      "effortLevel": "high"
+    },
+    "claude-haiku-5-5": {
+      "effortLevel": "high"
+    },
+    "claude-opus-5": {
+      "effortLevel": "xhigh"
+    },
+    "claude-opus-5-5": {
+      "effortLevel": "high"
+    },
+    "claude-sonnet-5": {
+      "effortLevel": "high"
+    },
+    "claude-sonnet-5-5": {
+      "effortLevel": "high"
+    }
+  },
+  "voice": {
+    "enabled": true,
+    "mode": "hold"
+  },
+  "skipDangerousModePermissionPrompt": true,
+  "skipWorkflowUsageWarning": true,
+  "theme": "dark",
+  "agentPushNotifEnabled": true,
+  "autoMode": {
+    "allow": [
+      "$defaults",
+      "Bash(rtk *)"
+    ],
+    "soft_deny": [
+      "$defaults",
+      "Bash(tofu apply*)",
+      "Bash(tofu destroy*)"
+    ]
+  },
+  "voiceEnabled": true
+}

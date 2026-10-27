@@ -1,0 +1,9 @@
+{
+  "name": "pass show is blocked at command position",
+  "stdin": {
+    "tool_input": {
+      "command": "pass show prod/aws"
+    }
+  },
+  "expect_exit": 2
+}

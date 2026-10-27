@@ -1,0 +1,9 @@
+{
+  "name": "1Password op read is blocked",
+  "stdin": {
+    "tool_input": {
+      "command": "op read op://Private/GitLab/token"
+    }
+  },
+  "expect_exit": 2
+}

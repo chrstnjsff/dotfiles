@@ -1,0 +1,9 @@
+{
+  "name": "shell write into .claude/hooks is blocked",
+  "stdin": {
+    "tool_input": {
+      "command": "cp /tmp/x.sh .claude/hooks/block-dangerous-commands.sh"
+    }
+  },
+  "expect_exit": 2
+}

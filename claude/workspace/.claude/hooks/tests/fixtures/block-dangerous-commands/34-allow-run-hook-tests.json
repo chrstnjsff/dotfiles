@@ -1,0 +1,9 @@
+{
+  "name": "running the hook test harness is allowed",
+  "stdin": {
+    "tool_input": {
+      "command": "bash .claude/hooks/tests/run-all.sh"
+    }
+  },
+  "expect_exit": 0
+}

@@ -1,0 +1,47 @@
+onboarding = false
+
+[theme]
+name = "catppuccin"
+auto_switch = false
+
+[ui]
+sidebar_collapsed_mode = "compact"
+agent_panel_sort = "spaces"
+mouse_capture          = true
+
+show_agent_labels_on_pane_borders = false
+[update]
+channel        = "stable"   # macOS direct install; ignore if using brew/mise/nix
+version_check  = true
+manifest_check = true       # keep agent-detection manifests fresh
+
+[terminal]
+new_cwd = "follow"          # each pane inherits the source worktree cwd;
+                             # composes with Worktrunk (one pane = one wt worktree)
+
+[session]
+resume_agents_on_restore = true    # default; explicit for clarity
+
+[ui.toast]
+delivery      = "herdr"     # in-app toast; survives over SSH where terminal-notifier doesn't
+delay_seconds = 2          # coalesce burst notifications
+
+[ui.sound]
+enabled = true
+
+[ui.sound.agents]
+claude    = "on"
+open_code = "on"
+pi        = "on"
+
+[ui.sidebar.spaces]
+row_gap = 0
+rows = [
+  ["state_icon", "workspace", "branch", "git_status"]
+]
+
+[ui.sidebar.agents]
+row_gap = 0
+rows = [
+  ["state_icon", "workspace", "agent"]
+]

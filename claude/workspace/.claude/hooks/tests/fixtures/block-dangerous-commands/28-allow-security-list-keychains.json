@@ -1,0 +1,9 @@
+{
+  "name": "security list-keychains is allowed",
+  "stdin": {
+    "tool_input": {
+      "command": "security list-keychains"
+    }
+  },
+  "expect_exit": 0
+}
