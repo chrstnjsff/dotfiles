@@ -1,0 +1,165 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "env": {
+    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
+  },
+  "permissions": {
+    "allow": [
+      "Bash(rtk *)",
+      "Bash(git *)",
+      "Bash(npm run *)",
+      "Bash(npx *)",
+      "Bash(docker *)",
+      "Bash(tofu plan *)",
+      "Bash(tofu validate *)",
+      "Bash(tofu fmt *)",
+      "Bash(python *)",
+      "Bash(pip *)",
+      "Bash(pytest *)",
+      "Bash(ruff *)",
+      "Bash(black *)",
+      "Bash(mypy *)",
+      "Bash(gitleaks *)",
+      "Bash(bash *.sh *)",
+      "Bash(sh *.sh *)",
+      "Bash(./.claude/hooks/*.sh)",
+      "Bash(cat *)",
+      "Bash(grep *)",
+      "Bash(find *)",
+      "Bash(ls *)",
+      "Bash(sed *)",
+      "Bash(awk *)",
+      "Bash(jq *)",
+      "Bash(curl *)",
+      "Bash(rtk curl *)",
+      "WebFetch(domain:github.com)",
+      "Bash(python3 *)",
+      "Skill(claude-api)",
+      "Bash(pnpm test *)",
+      "Bash(aws sts *)",
+      "Bash(tofu init *)",
+      "WebFetch(domain:aws.amazon.com)",
+      "WebSearch",
+      "Bash(npm i *)",
+      "Bash(lsof -nP -iTCP:3000 -sTCP:LISTEN)",
+      "Bash(lsof -nP -iTCP -sTCP:LISTEN)",
+      "Bash(pnpm start *)",
+      "Bash(npm install *)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "Bash(./node_modules/.bin/vitest run *)",
+      "Bash(./node_modules/.bin/vite build *)",
+      "Bash(/usr/bin/grep *)",
+      "Bash(/usr/bin/find src *)",
+      "Bash(tofu show *)",
+      "Bash(cd *)"
+    ],
+    "deny": [
+      "Read(**/.env)",
+      "Read(**/.env.*)",
+      "Read(**/secrets/**)",
+      "Read(**/*.pem)",
+      "Read(**/*.key)",
+      "Read(**/*.pfx)",
+      "Edit(**/.env)",
+      "Edit(**/.env.*)",
+      "Edit(**/secrets/**)",
+      "Edit(**/*.pem)",
+      "Edit(**/*.key)",
+      "Edit(**/*.pfx)",
+      "Bash(git push --force *)",
+      "Bash(git push -f *)",
+      "Bash(tofu destroy *)",
+      "Bash(docker compose run --rm tofu destroy *)",
+      "Bash(cat *.env)",
+      "Bash(cat *.env.*)",
+      "Bash(cat *.pem)",
+      "Bash(cat *.key)",
+      "Bash(aws secretsmanager get-secret-value *)",
+      "Bash(aws ssm get-parameter * --with-decryption*)",
+      "Bash(aws ssm get-parameters * --with-decryption*)",
+      "Bash(aws ssm get-parameters-by-path * --with-decryption*)"
+    ],
+    "ask": [
+      "Bash(tofu apply *)",
+      "Bash(docker compose run --rm tofu apply *)"
+    ]
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$CLAUDE_PROJECT_DIR/.claude/hooks/protect-files.sh",
+            "timeout": 5,
+            "statusMessage": "Checking file protections..."
+          },
+          {
+            "type": "command",
+            "command": "$CLAUDE_PROJECT_DIR/.claude/hooks/warn-large-files.sh",
+            "timeout": 5,
+            "statusMessage": "Checking for build artifacts..."
+          },
+          {
+            "type": "command",
+            "command": "$CLAUDE_PROJECT_DIR/.claude/hooks/scan-secrets.sh",
+            "timeout": 5,
+            "statusMessage": "Scanning for secrets..."
+          }
+        ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$CLAUDE_PROJECT_DIR/.claude/hooks/block-dangerous-commands.sh",
+            "timeout": 5,
+            "statusMessage": "Checking command safety..."
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$CLAUDE_PROJECT_DIR/.claude/hooks/format-on-save.sh",
+            "timeout": 15,
+            "statusMessage": "Formatting..."
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$CLAUDE_PROJECT_DIR/.claude/hooks/session-start.sh",
+            "timeout": 5,
+            "statusMessage": "Loading project context..."
+          }
+        ]
+      }
+    ],
+    "Notification": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "which osascript >/dev/null 2>&1 && osascript -e 'display notification \"Claude Code needs your attention\" with title \"Claude Code\"' || which notify-send >/dev/null 2>&1 && notify-send 'Claude Code' 'Claude Code needs your attention' || true"
+          }
+        ]
+      }
+    ]
+  },
+  "enabledPlugins": {
+    "code-simplifier@claude-plugins-official": true
+  }
+}

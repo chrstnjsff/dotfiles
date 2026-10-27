@@ -1,0 +1,9 @@
+{
+  "name": "the word pass inside a commit message is allowed",
+  "stdin": {
+    "tool_input": {
+      "command": "git commit -m \"all tests pass now\""
+    }
+  },
+  "expect_exit": 0
+}

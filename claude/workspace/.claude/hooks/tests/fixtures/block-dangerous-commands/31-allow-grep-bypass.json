@@ -1,0 +1,9 @@
+{
+  "name": "grep for the word bypass is allowed",
+  "stdin": {
+    "tool_input": {
+      "command": "grep -rn bypass api/"
+    }
+  },
+  "expect_exit": 0
+}

@@ -1,158 +1,64 @@
 # dotfiles
 
-This repository contains all of my personal development environment configurations, including:
-- **Neovim/LazyVim**: My custom Neovim setup with Lua configurations for an enhanced coding experience
-- **Tmux**: Terminal multiplexer configurations for efficient session management
-- **Zsh**: Shell configurations including Powerlevel10k theme and custom aliases
-- **Git**: Git aliases and workflow optimizations
+My Mac setup: shell, terminal, editor, window manager, and a Claude Code agent setup I take from job to job.
 
-## Repository Structure
+## New Mac
 
-```
-dotfiles/
-├── lua/
-│   ├── config/         # Neovim configuration files
-│   └── plugins/        # Plugin-specific configurations
-├── tmux/              # Tmux configuration files
-├── zsh/               # Zsh and shell configurations
-└── README.md
-```
-
-## Table of Contents
-- [Installation](#installation)
-- [Neovim Setup](#neovim-setup)
-- [Tmux Setup](#tmux-setup)
-- [Zsh Setup](#zsh-setup)
-- [SSH Configuration](#ssh-configuration)
-- [Customization](#customization)
-- [License](#license)
-
-## Installation
-
-### Prerequisites
-- [Neovim](https://neovim.io/) (>= 0.8.0)
-- [Git](https://git-scm.com/)
-- [Zsh](https://www.zsh.org/)
-- [Tmux](https://github.com/tmux/tmux)
-
-### Quick Setup
-
-1. **Clone this repository**:
-    ```bash
-    git clone https://github.com/chrstnjsff/devconfig.git ~/.devconfig
-    cd ~/.devconfig
-    ```
-
-2. **Create symlinks** for the configurations:
-    ```bash
-    # For Neovim
-    ln -sf ~/.devconfig/lua ~/.config/nvim/lua
-    
-    # For Tmux
-    ln -sf ~/.devconfig/tmux/tmux.conf ~/.tmux.conf
-    ln -sf ~/.devconfig/tmux/tmux.reset.conf ~/.tmux.reset.conf
-    
-    # For Zsh
-    ln -sf ~/.devconfig/zsh/p10k.zsh ~/.p10k.zsh
-    ```
-
-## Neovim Setup
-
-This repository includes custom Lua configurations for Neovim with LazyVim:
-
-- **Location**: `lua/config/` and `lua/plugins/`
-- **Features**:
-  - LSP configurations for multiple languages
-  - Telescope for fuzzy finding
-  - Treesitter for syntax highlighting
-  - Buffer management with bufferline
-  - Custom keymaps and options
-
-### Key Files
-- `lua/config/init.lua` - Main configuration entry point
-- `lua/config/keymaps.lua` - Custom key bindings
-- `lua/config/options.lua` - Neovim options and settings
-- `lua/config/lazy.lua` - Lazy.nvim plugin manager setup
-
-### Usage
-After creating symlinks, launch Neovim and LazyVim will automatically install and configure plugins:
 ```bash
-nvim
+git clone https://github.com/chrstnjsff/dotfiles.git ~/dotfiles
+cd ~/dotfiles
+claude
 ```
 
-## Tmux Setup
+Then paste:
 
-Tmux configurations for enhanced terminal session management:
+> Install my dotfiles by following INSTALL.md. My workspace folder is ~/work.
 
-- **Location**: `tmux/`
-- **Features**:
-  - Custom key bindings
-  - Status bar configuration
-  - Session management optimizations
+Claude installs the tools, links the configs, copies the Claude Code setup, and backs up anything it replaces.
+There is no install script on purpose: Claude follows [INSTALL.md](INSTALL.md) step by step and stops to ask when something fails.
 
-### Usage
-After symlinking the configuration:
-```bash
-# Start a new tmux session
-tmux
+## What is here
 
-# Or attach to existing session
-tmux attach
-```
+| Folder | What | Installs to |
+| --- | --- | --- |
+| `zsh/` | zsh, Oh My Zsh, Powerlevel10k, fzf key bindings, fzf-git | `~/.zshrc`, `~/.zprofile`, `~/.p10k.zsh`, `~/.zsh/` |
+| `git/` | git identity, includes `~/.gitconfig.local` | `~/.gitconfig` |
+| `tmux/` | tmux with TPM plugins | `~/.config/tmux/` |
+| `nvim/` | Neovim on LazyVim | `~/.config/nvim` |
+| `ghostty/` | Ghostty terminal | `~/.config/ghostty/config` |
+| `herdr/` | herdr agent multiplexer | `~/.config/herdr/config.toml` |
+| `yabai/`, `skhd/` | tiling window manager and hotkeys | `~/.config/yabai/`, `~/.config/skhd/` |
+| `btop/`, `thefuck/` | small tool configs | `~/.config/` |
+| `karabiner/`, `mise/`, `oh-my-posh/` | older configs, not linked by the installer | - |
+| `Brewfile` | every CLI tool, app and font | `brew bundle` |
+| `claude/global/` | personal Claude Code rules, hooks, status line, skills, settings template | `~/.claude/` |
+| `claude/workspace/` | the agent team, rules, hooks and skills for a company workspace | the workspace folder |
 
-## Zsh Setup
+Dotfiles are symlinked, so edits on the Mac show up here as git changes.
+The Claude Code files are copied, because Claude Code and some installers write into them.
 
-Zsh configuration with Powerlevel10k theme and productivity enhancements:
+## Claude Code setup
 
-- **Location**: `zsh/`
-- **Features**:
-  - Powerlevel10k theme configuration
-  - Custom Git aliases and functions
-  - Development tool integrations (kubectl, terraform, etc.)
-  - SSH agent management
+`claude/global/` is how I want Claude to work everywhere: plain-English replies, plan first, the model routing, the herdr and humanizer hooks, the status line, and the design skill pack.
 
-### Key Aliases
-- `gc "message"` - Git commit with message
-- `gst` - Git status
-- `gcob` - Git checkout branch (with fzf)
-- `k` - kubectl shorthand
-- `tf` - Terraform with AWS vault
-- `v` - Neovim shorthand
+`claude/workspace/` is the team I drop into each new company's workspace:
 
-### Installation
-1. Install [Oh My Zsh](https://ohmyz.sh/)
-2. Install [Powerlevel10k](https://github.com/romkatv/powerlevel10k)
-3. Symlink the configuration files
-4. Run `p10k configure` to set up the theme
+- `CLAUDE.md`: working rules, with a "Project constraints" section to fill in after reading the codebase.
+- `.claude/agents/`: investigator, architect, planner, coder, tester, reviewers (code, adversarial, security, performance, docs), refactor, simplifier, AI debt cleaner, frontend designer, CI/CD and IaC specialists.
+- `.claude/rules/`: code quality, testing, security, database, frontend, cloud, orchestration (Opus plans and reviews, Sonnet builds, Haiku only behind a gate).
+- `.claude/hooks/`: blocks dangerous commands, protects sensitive files, scans for secrets, formats on save, with tests in `hooks/tests/`.
+- `.claude/skills/`: day-to-day skills such as ship, pr-review, tdd, debug-fix, handoff, git-worktree.
 
-## SSH Configuration
+The agents are written for any stack.
+After joining a company, read the codebases, fill in `CLAUDE.md`, and tune the agents to the real stack.
 
-For GitHub authentication, this setup includes SSH key management:
+## Secrets
 
-1. **Generate SSH key**:
-    ```bash
-    ssh-keygen -t ed25519 -C "your-email@example.com" -f ~/.ssh/id_ed25519_personal
-    ```
+Nothing secret lives here.
+Tokens and work-only aliases go in `~/.zshrc.local`, the work git identity in `~/.gitconfig.local`, and API keys in `~/.claude/settings.json`.
+None of those files are in this repo.
 
-2. **Add to SSH agent**:
-    ```bash
-    eval "$(ssh-agent -s)"
-    ssh-add ~/.ssh/id_ed25519_personal
-    ```
+## Updating
 
-3. **Add to GitHub**: Copy the public key and add it to your GitHub account
-    ```bash
-    cat ~/.ssh/id_ed25519_personal.pub
-    ```
-
-## Customization
-
-Feel free to modify any configurations to suit your workflow:
-
-- **Neovim**: Edit files in `lua/config/` for personal preferences
-- **Tmux**: Modify `tmux/tmux.conf` for custom key bindings
-- **Zsh**: Update aliases and functions in your local `.zshrc`
-
-## License
-
-This project is open source and available under the [MIT License](LICENSE).
+- Dotfiles: edit on the Mac, then commit here.
+- Claude Code: copy changed files from `~/.claude` or the workspace back into `claude/`, check them for company names and secrets, then commit.

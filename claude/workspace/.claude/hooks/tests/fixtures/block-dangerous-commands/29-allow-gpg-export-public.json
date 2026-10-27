@@ -1,0 +1,9 @@
+{
+  "name": "gpg public key export is allowed",
+  "stdin": {
+    "tool_input": {
+      "command": "gpg --export --armor ABC123"
+    }
+  },
+  "expect_exit": 0
+}

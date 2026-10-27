@@ -1,0 +1,9 @@
+{
+  "name": "python write into .codex/hooks is blocked",
+  "stdin": {
+    "tool_input": {
+      "command": "python3 -c \"open('.codex/hooks/foo.sh','w')\""
+    }
+  },
+  "expect_exit": 2
+}

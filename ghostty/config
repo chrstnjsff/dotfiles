@@ -1,11 +1,53 @@
-theme = tokyonight-storm
-font-family = CaskaydiaCove Nerd Font
-font-size = 15
-gtk-titlebar = false
+# ~/.config/ghostty/config
 
-# These are important for proper color support
-mouse-hide-while-typing = true
+font-family = JetBrainsMono Nerd Font Mono
+font-size = 13
+adjust-cell-height = 35%
 
-background = #1a1b26
-foreground = #9ece6a
+window-padding-x = 10
+window-padding-y = 10
 
+
+# Transparency
+background-opacity = 0.70
+background-blur = macos-glass-clear
+
+background = #00111E
+foreground = #CBE0F0
+
+cursor-color = #47FF9C
+cursor-text = #011423
+
+selection-background = #033259
+selection-foreground = #CBE0F0
+
+palette = 0=#214969
+palette = 1=#E52E2E
+palette = 2=#44FFB1
+palette = 3=#FFE073
+palette = 4=#0FC5ED
+palette = 5=#a277ff
+palette = 6=#24EAF7
+palette = 7=#24EAF7
+
+palette = 8=#214969
+palette = 9=#E52E2E
+palette = 10=#44FFB1
+palette = 11=#FFE073
+palette = 12=#A277FF
+palette = 13=#a277ff
+palette = 14=#24EAF7
+palette = 15=#24EAF7
+
+# Shell
+shell-integration-features = no-cursor,sudo,no-title
+
+# Window
+macos-titlebar-style = transparent
+window-colorspace = display-p3
+
+# Config reload
+keybind = cmd+s>r=reload_config
+
+# Copy
+copy-on-select = clipboard
