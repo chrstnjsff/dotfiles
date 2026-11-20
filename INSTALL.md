@@ -116,7 +116,7 @@ chmod +x "$HOME/.claude/hooks/"*.sh "$HOME/.claude/statusline-command.sh"
 Settings:
 
 - If `~/.claude/settings.json` does not exist, copy `$REPO/claude/global/settings.json` there.
-- If it exists, back it up to `$BACKUP/claude/settings.json`, then add only what it lacks from the repo copy: `hooks`, `enabledPlugins`, `extraKnownMarketplaces`, `permissions` rules, `env` values, `statusLine`, `model`, `effortLevel`, `modelSettings`.
+- If it exists, back it up to `$BACKUP/claude/settings.json`, then add only what it lacks from the repo copy: `hooks`, `enabledPlugins`, `extraKnownMarketplaces`, `permissions` rules, `env` values, `statusLine`, `model`, `effortLevel`, `modelSettings`, `autoMode`.
   Append missing permission rules to the end of each list.
   Do not sort or dedupe with `jq unique`, because rule order matters.
   Show the user what you merged.
