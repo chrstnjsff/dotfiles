@@ -40,6 +40,7 @@ The Claude Code files are copied, because Claude Code and some installers write 
 ## Claude Code setup
 
 `claude/global/` is how I want Claude to work everywhere: plain-English replies, plan first, the model routing, the herdr and humanizer hooks, the status line, and the design skill pack.
+Its `settings.json` runs auto mode with plain-English trust rules, and deny rules keep Claude out of SSH keys, cloud credentials and `.env` files and stop force pushes.
 
 `claude/workspace/` is the team I drop into each new company's workspace:
 

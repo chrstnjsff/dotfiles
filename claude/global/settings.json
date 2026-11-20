@@ -19,7 +19,21 @@
       "Bash(obsidian tags *)",
       "Bash(obsidian tasks *)",
       "Bash(obsidian unresolved *)",
-      "Bash(obsidian files *)"
+      "Bash(obsidian files *)",
+      "Bash(rtk *)"
+    ],
+    "defaultMode": "auto",
+    "deny": [
+      "Read(~/.ssh/**)",
+      "Read(~/.aws/**)",
+      "Read(~/.gnupg/**)",
+      "Read(**/.env)",
+      "Read(**/.env.*)",
+      "Read(**/secrets/**)",
+      "Read(**/*.pem)",
+      "Read(**/*.key)",
+      "Bash(git push --force *)",
+      "Bash(git push -f *)"
     ]
   },
   "model": "opus",
@@ -140,14 +154,16 @@
   "theme": "dark",
   "agentPushNotifEnabled": true,
   "autoMode": {
-    "allow": [
+    "environment": [
       "$defaults",
-      "Bash(rtk *)"
+      "Source control: github.com/chrstnjsff and every repository under it belongs to the user and is trusted."
+    ],
+    "allow": [
+      "$defaults"
     ],
     "soft_deny": [
       "$defaults",
-      "Bash(tofu apply*)",
-      "Bash(tofu destroy*)"
+      "OpenTofu Apply or Destroy: running tofu apply or tofu destroy against any environment, unless the user named that exact change in this session."
     ]
   },
   "voiceEnabled": true
